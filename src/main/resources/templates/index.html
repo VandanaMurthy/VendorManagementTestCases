@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+         <title>Vendor Application</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1"/>
+         <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="D:/SpringExamples/vendorManagement/src/main/resources/static/css/sidebar.css"></link>
+<style>
+.visitors {
+	background-color: #f4511e; /* Orange */
+	color: #ffffff;
+	padding: 10px 40px;
+	text-align: center;
+}
+.modal-dialog {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width:600px;
+    height:300px;
+}
+</style>
+</head>
+<body>
+      
+           <div class="visitors">
+           <div class="row">
+  <div class="col-md-1" style="padding:0px;margin:0px;left:0px;display:inline-block;height:500%;"><img src="D:/SpringExamples/vendorManagement/src/main/resources/images/logo.png" class="img-responsive"  /></div>
+  <div class="col-md-11"><h1>VENDOR MANAGEMENT APPLICATION</h1></div>
+         </div>
+      </div>
+	       
+        
+          <div id="wrapper">
+                <!-- Sidebar -->
+                <div id="sidebar-wrapper">
+                     <ul class="sidebar-nav">
+                         <li><a href="#" data-toggle="modal" data-target="#addWindow">Add</a></li>
+                          <li class="dropdown" >
+                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Update <span class="caret"></span></a>
+                               <ul class="dropdown-menu">
+                                <li><a href="#" data-toggle="modal" data-target="#updateWindow">Update By Id</a></li>
+                                </ul>
+                            </li>
+                            
+                            <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Delete <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                   <li><a href="#" data-toggle="modal" data-target="#deleteId">Delete By Id</a></li>
+                                   <li><a href="#" data-toggle="modal" data-target="#deleteName">Delete By Name</a></li>
+                                   <li><a href="#" data-toggle="modal" data-target="#deleteCategory">Delete By Category</a></li>
+                            </ul>
+                            </li>
+                            <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">View <span class="caret"></span></a>
+                             <ul class="dropdown-menu">
+                                <li><a href="#" data-toggle="modal" data-target="#viewId">View By Id</a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#viewName">View By Name</a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#viewCategory">View By Category</a></li>
+                             </ul>
+                            </li>
+                             <li><a href="#" data-toggle="modal" data-target="#logout">Logout</a></li>
+                          
+                     </ul>
+                </div>
+                <!-- Page content -->
+                <div id="page-content-wrapper">
+                     <div class="container-fluid">
+                          <div class="row">
+                              <div class="col-lg-12">
+                                   <h1 align="center">Welcome to Accion Labs VMS</h1>
+                              </div>
+                          </div>
+                     </div>
+                </div>
+          </div>
+          <!-- Menu toggle script -->
+          <script>
+            $("#menu-toggle").click(function(e){
+            	e.preventDefault();
+            	$("#wrapper").toggleClass("menuDisplayed");
+            });
+          </script>                    
+                        
+          <!-- Modals -->
+                  <div class="modal fade" id="addWindow">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    
+                                    <div class="modal-header">
+                                         <button type="button" class="close" data-dismiss="modal">x</button>
+                                         <h2 class="modal-title">Add Vendor</h2>
+                                     </div>
+                                     
+                                     <div class="modal-body">
+                                          <form role="form">
+                                               <div class="form-group">
+                                                    <label>Vendor Name: </label><input type="text" class="form-control" id="name"/>
+                                              </div>
+                                               <div class="form-group">
+                                                    <label>Vendor Category: </label><input type="text" class="form-control" id="category"/>
+                                              </div>
+                                               <div class="form-group">
+                                                    <label>Resource Count: </label><input type="number" class="form-control" id="res"/>
+                                              </div>
+                                              <div class="form-group">
+                                                    <label>Start Date: </label><input type="date" class="form-control" id="sdate"/>
+                                              </div>
+                                               <div class="form-group">
+                                                    <label>End Date: </label><input type="date" class="form-control" id="edate"/>
+                                              </div>
+                                              <div class="form-group">
+                                                    <label>Status: </label><input type="text" class="form-control" id="status"/>
+                                              </div>
+                                              <div class="form-group">
+                                                    <label>Bill Rate: </label><input type="number" class="form-control" id="billRate"/>
+                                              </div>
+                                          </form>
+                                     </div>
+                                     <div class="modal-footer">
+                                         <button class="btn btn-primary btn-block">Submit</button>
+                                         <button class="btn btn-primary btn-block">Reset</button>
+                                     </div>
+                                </div>
+                            </div>
+          </div>
+          <div class="modal fade" id="updateWindow">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                    
+                                    <div class="modal-header">
+                                         <button type="button" class="close" data-dismiss="modal">x</button>
+                                         <h2 class="modal-title">Update Vendor</h2>
+                                     </div>
+                                     
+                                     <div class="modal-body">
+                                          <form role="form">
+                                              <div class="form-group">
+                                                    <label>Vendor Id: </label><input type="number" class="form-control" id="vid"/>
+                                              </div>
+                                          </form>
+                                     </div>
+                                     <div class="modal-footer">
+                                         <button class="btn btn-primary btn-block">Submit</button>
+                                         <button class="btn btn-primary btn-block">Reset</button>
+                                     </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="modal fade" id="deleteId">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                    
+                                    <div class="modal-header">
+                                         <button type="button" class="close" data-dismiss="modal">x</button>
+                                         <h2 class="modal-title">Delete Vendor</h2>
+                                     </div>
+                                     
+                                     <div class="modal-body">
+                                          <form role="form">
+                                              <div class="form-group">
+                                                    <label>Vendor Id: </label><input type="number" class="form-control" id="veid"/>
+                                              </div>
+                                          </form>
+                                     </div>
+                                     <div class="modal-footer">
+                                         <button class="btn btn-primary btn-block">Submit</button>
+                                         <button class="btn btn-primary btn-block">Reset</button>
+                                     </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="modal fade" id="deleteName">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                    
+                                    <div class="modal-header">
+                                         <button type="button" class="close" data-dismiss="modal">x</button>
+                                         <h2 class="modal-title">Delete Vendor</h2>
+                                     </div>
+                                     
+                                     <div class="modal-body">
+                                          <form role="form">
+                                              <div class="form-group">
+                                                    <label>Vendor Name: </label><input type="text" class="form-control" id="vname"/>
+                                              </div>
+                                          </form>
+                                     </div>
+                                     <div class="modal-footer">
+                                         <button class="btn btn-primary btn-block">Submit</button>
+                                         <button class="btn btn-primary btn-block">Reset</button>
+                                     </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="modal fade" id="deleteCategory">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                    
+                                    <div class="modal-header">
+                                         <button type="button" class="close" data-dismiss="modal">x</button>
+                                         <h2 class="modal-title">Delete Vendor</h2>
+                                     </div>
+                                     
+                                     <div class="modal-body">
+                                          <form role="form">
+                                              <div class="form-group">
+                                                    <label>Vendor Category: </label><input type="text" class="form-control" id="vcate"/>
+                                              </div>
+                                          </form>
+                                     </div>
+                                     <div class="modal-footer">
+                                         <button class="btn btn-primary btn-block">Submit</button>
+                                         <button class="btn btn-primary btn-block">Reset</button>
+                                     </div>
+                                </div>
+                            </div>
+                            </div>
+                             <div class="modal fade" id="viewId">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                    
+                                    <div class="modal-header">
+                                         <button type="button" class="close" data-dismiss="modal">x</button>
+                                         <h2 class="modal-title">View Vendor</h2>
+                                     </div>
+                                     
+                                     <div class="modal-body">
+                                          <form role="form">
+                                              <div class="form-group">
+                                                    <label>Vendor Id: </label><input type="number" class="form-control" id="veidview"/>
+                                              </div>
+                                          </form>
+                                     </div>
+                                     <div class="modal-footer">
+                                         <button class="btn btn-primary btn-block">Submit</button>
+                                         <button class="btn btn-primary btn-block">Reset</button>
+                                     </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="modal fade" id="viewName">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                    
+                                    <div class="modal-header">
+                                         <button type="button" class="close" data-dismiss="modal">x</button>
+                                         <h2 class="modal-title">View Vendor</h2>
+                                     </div>
+                                     
+                                     <div class="modal-body">
+                                          <form role="form">
+                                              <div class="form-group">
+                                                    <label>Vendor Name: </label><input type="text" class="form-control" id="vnameview"/>
+                                              </div>
+                                          </form>
+                                     </div>
+                                     <div class="modal-footer">
+                                         <button class="btn btn-primary btn-block">Submit</button>
+                                         <button class="btn btn-primary btn-block">Reset</button>
+                                     </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="modal fade" id="viewCategory">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                    
+                                    <div class="modal-header">
+                                         <button type="button" class="close" data-dismiss="modal">x</button>
+                                         <h2 class="modal-title">View Vendor</h2>
+                                     </div>
+                                     
+                                     <div class="modal-body">
+                                          <form role="form">
+                                              <div class="form-group">
+                                                    <label>Vendor Category: </label><input type="text" class="form-control" id="vcategory"/>
+                                              </div>
+                                          </form>
+                                     </div>
+                                     <div class="modal-footer">
+                                         <button class="btn btn-primary btn-block">Submit</button>
+                                         <button class="btn btn-primary btn-block">Reset</button>
+                                     </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="modal fade" id="logout">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                    
+                                    <div class="modal-header">
+                                         <button type="button" class="close" data-dismiss="modal">x</button>
+                                         <h2 class="modal-title">Logout</h2>
+                                     </div>
+                                     
+                                     <div class="modal-body">
+                                          <form role="form">
+                                              <div class="form-group">
+                                                    <label>Are You Sure? </label>
+                                              </div>
+                                          </form>
+                                     </div>
+                                     <div class="modal-footer">
+                                         <button class="btn btn-primary btn-block">Yes</button>
+                                         <button class="btn btn-primary btn-block">No</button>
+                                     </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div id="myCarousel" class="carousel container slide">
+<div class="carousel-inner">
+        <div class="active item one"></div>
+        <div class="item two"></div>
+        <div class="item three"></div>
+</div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.carousel').carousel({interval: 7000});
+  });
+</script>
+                            
+</body>
+</html>
